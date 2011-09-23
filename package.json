@@ -1,0 +1,14 @@
+{
+    "name": "stabbers-node",
+    "version": "0.0.1",
+
+    "author": "David Raynes <rayners@gmail.com>",
+
+    "engines": {
+	"node": "~0.4.7"
+    },
+
+    "dependencies": {
+	"irc": "0.2.0"
+    }
+}
