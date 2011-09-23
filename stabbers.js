@@ -13,7 +13,7 @@ var client = new irc.Client(server, nick, {
 var actions = {
     "stab": "stabs",
     "slap": "slaps",
-    "yawn": function(from, predicate) { "pours " + from + " another cup of coffee" },
+    "yawn": function(from, predicate) { return "pours " + from + " another cup of coffee" },
 };
 
 var acronyms = {
