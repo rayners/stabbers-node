@@ -12,7 +12,8 @@ var client = new irc.Client(server, nick, {
 
 var actions = {
     "stab": "stabs",
-    "slap": "slaps"
+    "slap": "slaps",
+    "yawn": function(from, predicate) { "pours " + from + " another cup of coffee" },
 };
 
 var acronyms = {
@@ -31,7 +32,14 @@ client.addListener('message', function (from, to, message) {
 
 	// is it an action?
 	if (command in actions) {
-	    client.say(to, "\u0001ACTION " + actions[command] + " " + predicate + "\u0001");
+            var action = '';
+	    if (typeOf(actions[command]) === 'function') {
+		action += actions[command](from, predicate);
+	    }
+	    else {
+		action += actions[command] + " " + predicate;
+	    }
+	    client.say(to, "\u0001ACTION " + action + "\u0001");
 	}
 
 	// or an acronym?
