@@ -33,7 +33,7 @@ client.addListener('message', function (from, to, message) {
 	// is it an action?
 	if (command in actions) {
             var action = '';
-	    if (typeOf(actions[command]) === 'function') {
+	    if (typeof(actions[command]) === 'function') {
 		action += actions[command](from, predicate);
 	    }
 	    else {
