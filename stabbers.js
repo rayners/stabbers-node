@@ -1,4 +1,4 @@
-var irc = require('irc');
+var jerk = require('jerk');
 var channels = [];
 if (process.env.IRC_CHANNELS) {
     channels = process.env.IRC_CHANNELS.split(',');
