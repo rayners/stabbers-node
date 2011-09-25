@@ -45,4 +45,18 @@ for (acronym in acronyms) {
     });
 }
 
+// githubiness
+var GitHubApi = require("github").GitHubApi;
+var github = new GitHubApi(true);
+jerk( function( j ) {
+    j.watch_for(/^\.ghr (\w+) (\w+)$/, function(message) {
+	var user = message.match_data[1];
+	var repo = message.match_data[2];
+
+	github.getRepoApi().show(user, repo, function(err, repos) {
+	    message.say(repos.url +": "+repos.description);
+	});
+    });
+});
+
 jerk(function(j){}).connect({ server: server, nick: nick, channels: channels });
