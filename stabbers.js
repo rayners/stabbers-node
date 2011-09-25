@@ -49,12 +49,14 @@ for (acronym in acronyms) {
 var GitHubApi = require("github").GitHubApi;
 var github = new GitHubApi(true);
 jerk( function( j ) {
-    j.watch_for(/^\.ghr (\w+) (\w+)$/, function(message) {
+    j.watch_for(/^\.ghr ([a-zA-Z0-9-_.]+) ([a-zA-Z0-9-_.]+)$/, function(message) {
 	var user = message.match_data[1];
 	var repo = message.match_data[2];
 
 	github.getRepoApi().show(user, repo, function(err, repos) {
-	    message.say(repos.url +": "+repos.description);
+	    if (repos) {
+		message.say(repos.url +": "+repos.description);
+	    }
 	});
     });
 });
