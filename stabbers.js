@@ -34,7 +34,7 @@ for (action in actions) {
 	    else {
 		act = verb + " " + predicate;
 	    }
-	    message.say("\u0001ACTION " + act "\u0001");
+	    message.say("\u0001ACTION " + act + "\u0001");
 	});
     });
 }
