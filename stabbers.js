@@ -11,6 +11,7 @@ var actions = {
     "stab": "stabs",
     "slap": "slaps",
     "yawn": function(from, predicate) { return "pours " + from + " another cup of coffee" },
+    "\^5": "high fives"
 };
 
 var acronyms = {
