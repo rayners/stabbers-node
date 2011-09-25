@@ -5,10 +5,11 @@ if (process.env.IRC_CHANNELS) {
 }
 var server = process.env.IRC_SERVER || 'irc.freenode.net';
 var nick   = process.env.IRC_NICK   || 'stabbers-node';
+var prefix = '.';
 
-var client = new irc.Client(server, nick, {
+/*var client = new irc.Client(server, nick, {
     channels: channels,
-});
+});*/
 
 var actions = {
     "stab": "stabs",
@@ -21,7 +22,34 @@ var acronyms = {
     "twss": "That's what she said!"
 };
 
-client.addListener('message', function (from, to, message) {
+for (action in actions) {
+    jerk( function( j ) {
+	var verb = actions[action];
+	j.watch_for(new RegExp("^\\." + action + '(?: (.*))$'), function(message) {
+	    var predicate = message.match_data[1] || message.user;
+	    var act = '';
+	    if (typeof(verb) === 'function') {
+		act = verb(message.user, predicate);
+	    }
+	    else {
+		act = verb + " " + predicate;
+	    }
+	    message.say("\u0001ACTION " + act "\u0001");
+	});
+    });
+}
+
+for (acronym in acronyms) {
+    jerk( function( j ) {
+	j.watch_for(new RegExp("^\\." + acronym + "$"), function(message) {
+	    message.say(acronyms[acronym]);
+	});
+    });
+}
+
+jerk().connect({ server: server, nick: nick, channels: channels });
+
+/*client.addListener('message', function (from, to, message) {
     if (message.match(/^\./)) {
 	// it's a command!
 	var bits = message.split(' ', 2);
@@ -48,4 +76,4 @@ client.addListener('message', function (from, to, message) {
 	}
 
     }
-});
+});*/
