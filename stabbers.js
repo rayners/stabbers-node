@@ -33,7 +33,6 @@ for (action in actions) {
 	    }
 	    else {
 		var buffer = '';
-		console.log("verb => " + typeof verb);
 		mu.renderText(verb, { user: message.user, predicate: predicate })
 		    .addListener('data', function(c) {buffer += c;})
 		    .addListener('end', function() {message.say("\u0001ACTION " + buffer + "\u0001");});
