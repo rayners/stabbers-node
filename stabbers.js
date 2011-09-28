@@ -12,7 +12,8 @@ var actions = {
     "stab": "stabs {{predicate}}",
     "slap": "slaps {{predicate}}",
     "yawn": "pours {{user}} another cup of coffee",
-    "\\^5": "high fives {{predicate}}"
+    "\\^5": "high fives {{predicate}}",
+    "tackle": "tackles {{predicate}}"
 };
 
 var acronyms = {
@@ -55,8 +56,8 @@ jerk( function( j ) {
 	  j.watch_for(new RegExp("^" + nick + "!$"), function(message) {
 			  message.say(message.user + "!");
 			  });
-	  j.watch_for(new RegExp("^(hi|howdy|hiya|hey there) " + nick + "(!?)$"), function(message) {
-			  message.say(message.match_data[1] + " " + message.user + message.match_data[2]);
+	  j.watch_for(new RegExp("^(hi|howdy|hiya|hey( there)?),? " + nick + "(!?)$"), function(message) {
+			  message.say(message.match_data[1] + " " + message.user + message.match_data[3]);
 			  });
       });
 
