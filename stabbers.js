@@ -4,8 +4,30 @@ var channels = [];
 if (process.env.IRC_CHANNELS) {
     channels = process.env.IRC_CHANNELS.split(',');
 }
-var server = process.env.IRC_SERVER || 'irc.freenode.net';
-var nick   = process.env.IRC_NICK   || 'stabbers-node';
+var server    = process.env.IRC_SERVER || 'irc.freenode.net';
+var pass      = process.env.IRC_SERVER_PASS;
+var nick      = process.env.IRC_NICK   || 'stabbers-node';
+var nick_pass = process.env.IRC_NICK_PASS;
+
+var debug     = process.env.DEBUG;
+
+var bot;
+var connect_options = {
+    server: server,
+    nick: nick,
+    channels: channels
+};
+
+if (pass) {
+    connect_options['pass'] = pass
+}
+
+if (nick_pass) {
+    connect_options['onConnect'] = function() {
+	bot.say('NickServ', 'identify ' + nick_pass);
+    };
+}
+
 var prefix = '.';
 
 var actions = {
@@ -76,4 +98,5 @@ jerk( function( j ) {
     });
 });
 
-jerk(function(j){}).connect({ server: server, nick: nick, channels: channels });
+debug && console.log("options: " + JSON.stringify(connect_options));
+bot = jerk(function(j){}).connect(connect_options);
