@@ -15,7 +15,8 @@ var bot;
 var connect_options = {
     server: server,
     nick: nick,
-    channels: channels
+    channels: channels,
+    user: { username: nick, hostname: 'thetubes', servername: 'tube1', realname: 'Stabbers Bot' }
 };
 
 if (pass) {
@@ -40,7 +41,8 @@ var actions = {
 
 var acronyms = {
     "ym": "Your mom",
-    "twss": "That's what she said!"
+    "twss": "That's what she said!",
+    "whee+!?": "Wheeee!"
 };
 
 for (action in actions) {
