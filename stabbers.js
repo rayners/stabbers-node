@@ -42,7 +42,7 @@ var actions = {
 var acronyms = {
     "ym": "Your mom",
     "twss": "That's what she said!",
-    "whee+!?": "Wheeee!"
+    "whee+!*": "Wheeee!"
 };
 
 for (action in actions) {
