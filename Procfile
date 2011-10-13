@@ -1,1 +1,1 @@
-stabbers: node stabbers.js
+web: node stabbers.js
