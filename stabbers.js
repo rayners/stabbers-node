@@ -20,7 +20,7 @@ var connect_options = {
 };
 
 if (pass) {
-    connect_options['pass'] = pass
+    connect_options['pass'] = pass;
 }
 
 if (nick_pass) {
@@ -84,6 +84,14 @@ jerk( function( j ) {
 			  message.say(message.match_data[1] + " " + message.user + message.match_data[3]);
 			  });
       });
+
+var thanks = ["You're welcome ", "No problem, ", "It was my pleasure, "];
+// thanks!
+jerk( function( j ) {
+    j.watch_for(new RegExp("^(thanks|thank you) " + nick + "!?$"), function(message) {
+	message.say(thanks[Math.floor(Math.random()*thanks.length)] + message.user);
+	});
+});
 
 // githubiness
 var GitHubApi = require("github").GitHubApi;
