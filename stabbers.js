@@ -38,7 +38,8 @@ var actions = {
     "\\^5": "high fives {{predicate}}",
     "tackle": "tackles {{predicate}}",
     "sigh": "sighs",
-    "kick": "kicks {{predicate}}"
+    "kick": "kicks {{predicate}}",
+    "heart": "<3s {{predicate}}"
 };
 
 var acronyms = {
