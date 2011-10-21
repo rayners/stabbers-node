@@ -34,7 +34,7 @@ var prefix = '.';
 var actions = {
     "stab": "stabs {{predicate}}",
     "slap": "slaps {{predicate}}",
-    "yawn": "pours {{user}} another cup of coffee",
+//    "yawn": "pours {{user}} another cup of coffee",
     "\\^5": "high fives {{predicate}}",
     "tackle": "tackles {{predicate}}",
     "sigh": "sighs",
@@ -67,6 +67,17 @@ for (action in actions) {
 	});
     });
 }
+
+// .yawn is more complex now
+jerk( function( j ) {
+	  j.watch_for(new RegExp("^\\.yawn"), function(message) {
+			  if (Math.random() < 0.10) {
+			      message.say(message.user + ": Get it yourself!");
+			  } else {
+			      message.say("\u0001ACTION pours " + message.user + " another cup of coffee");
+			  }
+			  });
+});
 
 for (acronym in acronyms) {
     jerk( function( j ) {
