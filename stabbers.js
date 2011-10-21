@@ -74,7 +74,7 @@ jerk( function( j ) {
 			  if (Math.random() < 0.10) {
 			      message.say(message.user + ": Get it yourself!");
 			  } else {
-			      message.say("\u0001ACTION pours " + message.user + " another cup of coffee");
+			      message.say("\u0001ACTION pours " + message.user + " another cup of coffee\u0001");
 			  }
 			  });
 });
